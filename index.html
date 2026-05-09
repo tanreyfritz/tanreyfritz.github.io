@@ -1,149 +1,581 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Rey Fritz Eisen L. Tan | Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rey Fritz Eisen L. Tan | Full Stack & AI/ML Engineer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0d1b2e;
+      --navy-mid: #152540;
+      --navy-light: #1e3558;
+      --steel: #2e4a6e;
+      --accent: #c8a96e;
+      --accent-light: #e2c98a;
+      --silver: #8fa3bc;
+      --light: #d6e4f0;
+      --white: #f4f8fc;
+      --gray: #4a6070;
+      --green: #2dce89;
+      --red: #f75777;
+      --purple: #7c6fff;
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--navy); color: var(--white); overflow-x: hidden; }
 
-<style>
-:root {
-  --navy:#0d1b2e;
-  --navy-mid:#152540;
-  --accent:#c8a96e;
-  --silver:#8fa3bc;
-  --white:#f4f8fc;
-}
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--navy); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
 
-body {
-  margin:0;
-  font-family:'DM Sans',sans-serif;
-  background:var(--navy);
-  color:var(--white);
-}
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 6%;
+      background: rgba(13,27,46,0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(200,169,110,0.12);
+    }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--accent); letter-spacing: 0.04em; }
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--silver); text-decoration: none; transition: color 0.25s; position: relative;
+    }
+    .nav-links a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px; background: var(--accent); transition: width 0.3s ease; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links a:hover::after { width: 100%; }
 
-nav {
-  position:fixed;
-  top:0;
-  width:100%;
-  padding:1rem 6%;
-  background:rgba(13,27,46,0.92);
-  display:flex;
-  justify-content:space-between;
-}
+    /* ── HERO ── */
+    #hero { min-height: 100vh; display: flex; align-items: center; padding: 0 6%; position: relative; overflow: hidden; }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 60% at 80% 40%, rgba(46,74,110,0.45) 0%, transparent 70%),
+                  radial-gradient(ellipse 40% 50% at 10% 70%, rgba(200,169,110,0.07) 0%, transparent 60%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0; opacity: 0.04;
+      background-image: linear-gradient(var(--silver) 1px, transparent 1px), linear-gradient(90deg, var(--silver) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-content { position: relative; max-width: 800px; }
+    .hero-eyebrow { font-family: 'DM Mono', monospace; font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 0.7s 0.2s forwards; }
+    .hero-name { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem,6vw,5rem); font-weight: 900; line-height: 1.05; color: var(--white); opacity: 0; animation: fadeUp 0.7s 0.35s forwards; }
+    .hero-name span { color: var(--accent); }
+    .hero-title { font-size: clamp(1rem,2vw,1.25rem); font-weight: 300; color: var(--silver); margin-top: 1rem; letter-spacing: 0.02em; opacity: 0; animation: fadeUp 0.7s 0.5s forwards; }
+    .hero-desc { margin-top: 1.8rem; max-width: 520px; font-size: 0.95rem; line-height: 1.8; color: var(--light); opacity: 0; animation: fadeUp 0.7s 0.65s forwards; }
+    .hero-actions { margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.7s 0.8s forwards; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 2rem; border-radius: 3px; background: var(--accent); color: var(--navy); font-weight: 600; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: background 0.25s, transform 0.2s; }
+    .btn-primary:hover { background: var(--accent-light); transform: translateY(-2px); }
+    .btn-outline { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 2rem; border-radius: 3px; border: 1px solid var(--steel); color: var(--light); font-weight: 500; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: border-color 0.25s, color 0.25s, transform 0.2s; }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+    .hero-avatar { position: absolute; right: 6%; top: 50%; transform: translateY(-50%); width: clamp(180px,22vw,320px); opacity: 0; animation: fadeLeft 0.9s 0.5s forwards; }
+    .avatar-ring { width: 100%; aspect-ratio: 1; border-radius: 50%; border: 2px solid rgba(200,169,110,0.3); display: flex; align-items: center; justify-content: center; position: relative; }
+    .avatar-ring::before { content: ''; position: absolute; inset: -8px; border-radius: 50%; border: 1px solid rgba(200,169,110,0.1); }
+    .avatar-inner { width: 88%; aspect-ratio: 1; border-radius: 50%; background: linear-gradient(135deg, var(--navy-light) 0%, var(--steel) 100%); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: clamp(2rem,4vw,4rem); font-weight: 700; color: var(--accent); }
 
-.nav-logo { color:var(--accent); font-weight:700; }
+    /* ── SECTIONS ── */
+    section { padding: 6rem 6%; }
+    .section-label { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem,3.5vw,2.8rem); font-weight: 700; color: var(--white); margin-bottom: 1rem; }
+    .section-divider { width: 48px; height: 2px; background: linear-gradient(90deg, var(--accent), transparent); margin-bottom: 2.5rem; }
+    .fade-in { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-section { padding:6rem 6%; }
+    /* ── ABOUT ── */
+    #about { background: var(--navy-mid); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .about-text p { font-size: 0.95rem; line-height: 1.9; color: var(--light); margin-bottom: 1.2rem; }
+    .about-stats { display: flex; gap: 2rem; margin-top: 2rem; flex-wrap: wrap; }
+    .stat { text-align: center; }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; color: var(--accent); display: block; }
+    .stat-label { font-size: 0.75rem; color: var(--silver); text-transform: uppercase; letter-spacing: 0.1em; }
+    .about-card { background: rgba(30,53,88,0.5); border: 1px solid rgba(200,169,110,0.12); border-radius: 6px; padding: 2rem; }
+    .about-card h4 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--accent); margin-bottom: 1rem; }
+    .about-card p { font-size: 0.88rem; line-height: 1.8; color: var(--silver); }
 
-.projects-grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
-  gap:1.5rem;
-}
+    /* ── SKILLS ── */
+    #skills { background: var(--navy); }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 1.5rem; }
+    .skill-category { background: var(--navy-mid); border: 1px solid rgba(200,169,110,0.1); border-radius: 6px; padding: 1.8rem; transition: border-color 0.3s, transform 0.3s; }
+    .skill-category:hover { border-color: rgba(200,169,110,0.4); transform: translateY(-4px); }
+    .skill-category h4 { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem; font-family: 'DM Mono', monospace; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .tag { padding: 0.35rem 0.85rem; border-radius: 2px; font-size: 0.78rem; font-weight: 500; background: rgba(46,74,110,0.6); color: var(--light); border: 1px solid rgba(143,163,188,0.15); }
 
-.project-card {
-  background:var(--navy-mid);
-  border:1px solid rgba(200,169,110,0.1);
-  border-radius:8px;
-  overflow:hidden;
-}
+    /* ── PROJECTS ── */
+    #projects { background: var(--navy-mid); }
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px,1fr)); gap: 1.8rem; }
 
-.project-preview { height:140px; background:#0b0f1a; }
+    /* ── FEATURED PROJECT CARD ── */
+    .project-card {
+      background: var(--navy);
+      border: 1px solid rgba(200,169,110,0.1);
+      border-radius: 8px; overflow: hidden;
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+      display: flex; flex-direction: column;
+    }
+    .project-card:hover { transform: translateY(-6px); border-color: rgba(200,169,110,0.35); box-shadow: 0 20px 48px rgba(0,0,0,0.5); }
 
-.project-header {
-  padding:1rem;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
+    /* Live preview strip at top of card */
+    .project-preview {
+      width: 100%; height: 160px; position: relative; overflow: hidden;
+      border-bottom: 1px solid rgba(200,169,110,0.08);
+      background: #080810;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .preview-canvas { width: 100%; height: 100%; }
 
-/* PROJECT NAME = ONLY LINK */
-.project-title a {
-  color:var(--accent);
-  text-decoration:none;
-  font-size:1.1rem;
-  font-weight:600;
-}
+    /* Animated chart for Stock M */
+    .preview-stock { position: relative; width: 100%; height: 100%; padding: 16px; }
+    .ps-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .ps-label { font-family: 'DM Mono', monospace; font-size: 10px; color: #7b6fff; letter-spacing: 1px; text-transform: uppercase; }
+    .ps-chips { display: flex; gap: 6px; }
+    .ps-chip { font-family: 'DM Mono', monospace; font-size: 9px; padding: 2px 7px; border-radius: 3px; font-weight: 500; }
+    .ps-chip.g { background: rgba(34,217,151,0.15); color: #22d997; }
+    .ps-chip.r { background: rgba(255,77,106,0.15); color: #ff4d6a; }
+    .ps-rows { display: flex; flex-direction: column; gap: 5px; }
+    .ps-row { display: flex; align-items: center; gap: 8px; }
+    .ps-ticker { font-family: 'DM Mono', monospace; font-size: 10px; color: #a0a0bc; width: 38px; flex-shrink: 0; }
+    .ps-bar-bg { flex: 1; height: 4px; background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden; }
+    .ps-bar-fill { height: 100%; border-radius: 2px; }
+    .ps-pct { font-family: 'DM Mono', monospace; font-size: 9px; width: 42px; text-align: right; flex-shrink: 0; }
+    .ps-sparkline { position: absolute; bottom: 0; left: 0; right: 0; opacity: 0.5; }
 
-/* hover tooltip via title attribute handled in HTML */
+    /* Animated chart for Forex M */
+    .preview-forex { position: relative; width: 100%; height: 100%; padding: 16px; }
+    .pf-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+    .pf-label { font-family: 'DM Mono', monospace; font-size: 10px; color: #2dce89; letter-spacing: 1px; text-transform: uppercase; }
+    .pf-pairs { display: flex; flex-direction: column; gap: 4px; }
+    .pf-pair { display: flex; align-items: center; gap: 8px; }
+    .pf-code { font-family: 'DM Mono', monospace; font-size: 10px; color: #7a7a9a; width: 58px; flex-shrink: 0; }
+    .pf-rate { font-family: 'DM Mono', monospace; font-size: 11px; color: #eeeef5; flex: 1; }
+    .pf-chg { font-family: 'DM Mono', monospace; font-size: 9px; padding: 1px 6px; border-radius: 3px; flex-shrink: 0; }
+    .pf-chg.up { background: rgba(45,206,137,0.12); color: #2dce89; }
+    .pf-chg.dn { background: rgba(247,87,119,0.12); color: #f75777; }
+    .pf-strength { position: absolute; bottom: 12px; left: 16px; right: 16px; }
+    .pf-str-label { font-family: 'DM Mono', monospace; font-size: 8px; color: #3a3a5a; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+    .pf-str-bars { display: flex; gap: 3px; align-items: flex-end; height: 20px; }
+    .pf-str-bar { flex: 1; border-radius: 2px 2px 0 0; }
 
-.project-body {
-  padding:1rem;
-  color:var(--silver);
-  font-size:0.9rem;
-}
-</style>
+    .project-card-badge {
+      position: absolute; top: 10px; right: 10px;
+      font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 0.8px;
+      text-transform: uppercase; padding: 3px 8px; border-radius: 3px;
+      font-weight: 500;
+    }
+    .badge-live { background: rgba(45,206,137,0.2); color: #2dce89; border: 1px solid rgba(45,206,137,0.3); }
+    .badge-sim  { background: rgba(124,111,255,0.2); color: #a89fff; border: 1px solid rgba(124,111,255,0.3); }
+
+    .project-header { padding: 1.5rem 1.8rem 0; display: flex; align-items: flex-start; justify-content: space-between; }
+    .project-icon { width: 44px; height: 44px; border-radius: 4px; background: rgba(200,169,110,0.12); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+    .project-links { display: flex; gap: 0.8rem; align-items: center; flex-wrap: wrap; }
+    .project-links a { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--silver); text-decoration: none; font-family: 'DM Mono', monospace; transition: color 0.2s; }
+    .project-links a:hover { color: var(--accent); }
+    .project-links a.btn-live {
+      padding: 4px 12px; border-radius: 4px; font-size: 0.68rem;
+      background: rgba(200,169,110,0.12); color: var(--accent);
+      border: 1px solid rgba(200,169,110,0.25); transition: all 0.2s;
+    }
+    .project-links a.btn-live:hover { background: rgba(200,169,110,0.22); transform: none; }
+    .project-body { padding: 1.2rem 1.8rem 1.8rem; flex: 1; }
+    .project-body h3 { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: var(--white); margin-bottom: 0.5rem; }
+    .project-body .project-tagline { font-size: 0.78rem; color: var(--accent); font-family: 'DM Mono', monospace; letter-spacing: 0.05em; margin-bottom: 0.8rem; text-transform: uppercase; }
+    .project-body p { font-size: 0.85rem; line-height: 1.75; color: var(--silver); margin-bottom: 1rem; }
+
+    /* Feature bullets */
+    .feature-list { list-style: none; margin-bottom: 1.2rem; display: flex; flex-direction: column; gap: 4px; }
+    .feature-list li { font-size: 0.8rem; color: var(--light); display: flex; align-items: flex-start; gap: 8px; line-height: 1.5; }
+    .feature-list li::before { content: '→'; color: var(--accent); font-family: 'DM Mono', monospace; font-size: 0.72rem; flex-shrink: 0; margin-top: 2px; }
+
+    .project-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .stack-tag { padding: 0.2rem 0.65rem; font-size: 0.72rem; background: rgba(200,169,110,0.1); color: var(--accent); border-radius: 2px; font-family: 'DM Mono', monospace; }
+
+    /* Stats row inside card */
+    .project-stats { display: flex; gap: 0; border-top: 1px solid rgba(200,169,110,0.08); margin-top: 1.2rem; padding-top: 1.2rem; }
+    .proj-stat { flex: 1; text-align: center; padding: 0 0.5rem; border-right: 1px solid rgba(200,169,110,0.08); }
+    .proj-stat:last-child { border-right: none; }
+    .proj-stat-num { font-family: 'DM Mono', monospace; font-size: 1rem; font-weight: 500; color: var(--white); display: block; }
+    .proj-stat-lbl { font-size: 0.68rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.08em; }
+
+    /* Third project card (Medicine Directory — existing style) */
+    .project-card-simple { background: var(--navy); border: 1px solid rgba(200,169,110,0.1); border-radius: 8px; overflow: hidden; transition: transform 0.3s, border-color 0.3s; display: flex; flex-direction: column; }
+    .project-card-simple:hover { transform: translateY(-6px); border-color: rgba(200,169,110,0.4); }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--navy-mid); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .contact-info p { font-size: 0.95rem; line-height: 1.8; color: var(--light); margin-bottom: 2rem; }
+    .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-link { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.2rem; border-radius: 4px; background: rgba(30,53,88,0.5); border: 1px solid rgba(200,169,110,0.1); text-decoration: none; color: var(--light); transition: border-color 0.25s, transform 0.2s; }
+    .contact-link:hover { border-color: var(--accent); transform: translateX(4px); }
+    .contact-link-icon { width: 36px; height: 36px; border-radius: 3px; background: rgba(200,169,110,0.1); display: flex; align-items: center; justify-content: center; font-size: 1rem; }
+    .contact-link-text span:first-child { display: block; font-size: 0.75rem; color: var(--silver); text-transform: uppercase; letter-spacing: 0.1em; }
+    .contact-link-text span:last-child { font-size: 0.9rem; font-weight: 500; }
+    .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-group label { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--silver); font-family: 'DM Mono', monospace; }
+    .form-group input, .form-group textarea { background: rgba(30,53,88,0.5); border: 1px solid rgba(143,163,188,0.2); border-radius: 3px; padding: 0.75rem 1rem; color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.25s; resize: vertical; }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); }
+    .form-group textarea { min-height: 120px; }
+
+    /* ── FOOTER ── */
+    footer { padding: 2.5rem 6%; background: var(--navy); border-top: 1px solid rgba(200,169,110,0.1); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--accent); font-weight: 700; }
+    .footer-copy { font-size: 0.8rem; color: var(--gray); }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: 0.8rem; color: var(--gray); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--accent); }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeLeft { from { opacity: 0; transform: translateX(40px) translateY(-50%); } to { opacity: 1; transform: translateX(0) translateY(-50%); } }
+
+    /* Shimmer animation on preview */
+    @keyframes shimmer-line { 0%,100%{opacity:0.6} 50%{opacity:1} }
+    .ps-bar-fill { animation: shimmer-line 2s ease-in-out infinite; }
+
+    @media (max-width: 900px) { .hero-avatar { display: none; } .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+    @media (max-width: 600px) { nav { padding: 1rem 4%; } .nav-links { gap: 1.2rem; } section { padding: 4rem 4%; } .hero-actions { flex-direction: column; } .projects-grid { grid-template-columns: 1fr; } }
+  </style>
 </head>
-
 <body>
 
 <nav>
   <div class="nav-logo">RFELT</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
 </nav>
 
-<section>
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Available for opportunities</p>
+    <h1 class="hero-name">Rey Fritz<br><span>Eisen L. Tan</span></h1>
+    <p class="hero-title">Full Stack Developer &amp; AI/ML Engineer</p>
+    <p class="hero-desc">Building intelligent, scalable software at the intersection of full-stack engineering and machine learning — turning complex problems into elegant, impactful solutions.</p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn-primary">View My Work</a>
+      <a href="#" class="btn-outline" download>↓ Download Resume</a>
+    </div>
+  </div>
+  <div class="hero-avatar">
+    <div class="avatar-ring">
+      <div class="avatar-inner">RFT</div>
+    </div>
+  </div>
+</section>
 
-<h2>Projects</h2>
+<section id="about">
+  <div class="fade-in">
+    <p class="section-label">// 01. About</p>
+    <h2 class="section-title">Who I Am</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="about-grid">
+    <div class="about-text fade-in">
+      <p>I'm Rey Fritz Eisen L. Tan — a Full Stack Developer and AI/ML Engineer with a passion for building software that's not just functional, but intelligent. I thrive at the crossroads of back-end architecture, front-end craftsmanship, and machine learning systems.</p>
+    </div>
+    <div class="about-card fade-in">
+      <h4>My Approach</h4>
+      <p>I approach every project with a systems-thinking mindset — understanding not just the "what" but the "why." I value clean code, thoughtful architecture, and continuous learning. AI isn't a buzzword to me; it's a toolkit I use daily to solve real problems with measurable impact.</p>
+    </div>
+  </div>
+</section>
 
-<div class="projects-grid">
+<section id="skills">
+  <div class="fade-in">
+    <p class="section-label">// 02. Skills</p>
+    <h2 class="section-title">Tech Stack</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-category fade-in">
+      <h4>Languages</h4>
+      <div class="skill-tags">
+        <span class="tag">Java</span><span class="tag">Python</span><span class="tag">C#</span>
+        <span class="tag">JavaScript</span><span class="tag">HTML</span><span class="tag">CSS</span>
+        <span class="tag">SQL</span><span class="tag">TypeScript</span><span class="tag">Bash</span>
+      </div>
+    </div>
+    <div class="skill-category fade-in">
+      <h4>Frameworks &amp; Libraries</h4>
+      <div class="skill-tags">
+        <span class="tag">React</span><span class="tag">Node.js</span><span class="tag">TensorFlow</span>
+        <span class="tag">PyTorch</span><span class="tag">scikit-learn</span>
+      </div>
+    </div>
+    <div class="skill-category fade-in">
+      <h4>Tools &amp; Infrastructure</h4>
+      <div class="skill-tags">
+        <span class="tag">Git</span><span class="tag">MySQL</span><span class="tag">NoSQL</span>
+        <span class="tag">SQLite</span><span class="tag">REST APIs</span><span class="tag">CI/CD</span>
+        <span class="tag">Agile / Scrum</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <!-- STOCK M -->
-  <div class="project-card">
+<!-- ── PROJECTS ── -->
+<section id="projects">
+  <div class="fade-in">
+    <p class="section-label">// 03. Projects</p>
+    <h2 class="section-title">Featured Work</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="projects-grid">
 
-    <div class="project-preview"></div>
+    <!-- ═══════════ STOCK M ═══════════ -->
+    <div class="project-card fade-in">
+      <!-- Animated preview -->
+      <div class="project-preview">
+        <div class="preview-stock">
+          <div class="ps-top">
+            <span class="ps-label">Stock M · Live Dashboard</span>
+            <div class="ps-chips">
+              <span class="ps-chip g">▲ 18 gainers</span>
+              <span class="ps-chip r">▼ 9 losers</span>
+            </div>
+          </div>
+          <div class="ps-rows" id="stockPreviewRows"></div>
+        </div>
+        <div class="ps-sparkline" id="stockSparklinePreview"></div>
+        <span class="project-card-badge badge-sim">Simulated data</span>
+      </div>
 
-    <div class="project-header">
-      <div class="project-title">
-        <a href="https://tanreyfritz.github.io/stockmarketmonitor/"
-           target="_blank"
-           title="Open Stock M Live App">
-          Stock M
-        </a>
+      <div class="project-header">
+        <div class="project-icon">📈</div>
+        <div class="project-links">
+          <a href="https://tanreyfritz.github.io/stockmarketmonitor/" class="btn-live" target="_blank">StockM</a>
+        </div>
+      </div>
+      <div class="project-body">
+        <h3>Stock M</h3>
+        <p class="project-tagline">Multi-market equity dashboard</p>
+        <p>A real-time stock market monitor tracking 68 equities across US (NYSE/NASDAQ), Global (LSE, TSE, HKEX, XETRA, KRX, ASX, TSX, NSE), and Philippine (PSE) markets — with live micro-price drift, intraday sparklines, and a full modal breakdown per ticker.</p>
+        <ul class="feature-list">
+          <li>68 stocks across 11 exchanges in 3 market tabs</li>
+          <li>Micro-update engine nudges prices every 3s without full re-render</li>
+          <li>Grid &amp; list view toggle, sector pills with live counts</li>
+          <li>Per-stock modal: 52-week range bar, P/E, EPS, market cap, dividend yield, beta</li>
+          <li>Investment calculator showing shares and P&amp;L</li>
+          <li>Watchlist with localStorage persistence &amp; toast notifications</li>
+          <li>World clocks with exchange open/pre-market/after-hours status</li>
+          <li>Scrolling ticker tape with live price feed</li>
+        </ul>
+        <div class="project-stats">
+          <div class="proj-stat"><span class="proj-stat-num">68</span><span class="proj-stat-lbl">Tickers</span></div>
+          <div class="proj-stat"><span class="proj-stat-num">11</span><span class="proj-stat-lbl">Exchanges</span></div>
+          <div class="proj-stat"><span class="proj-stat-num">3s</span><span class="proj-stat-lbl">Refresh</span></div>
+          <div class="proj-stat"><span class="proj-stat-num">30s</span><span class="proj-stat-lbl">Auto-reload</span></div>
+        </div>
+        <div class="project-stack" style="margin-top:1.2rem">
+          <span class="stack-tag">Vanilla JS</span>
+          <span class="stack-tag">SVG Sparklines</span>
+          <span class="stack-tag">Intl API</span>
+          <span class="stack-tag">localStorage</span>
+          <span class="stack-tag">CSS Grid</span>
+          <span class="stack-tag">DM Mono</span>
+          <span class="stack-tag">Syne</span>
+        </div>
       </div>
     </div>
 
-    <div class="project-body">
-      Multi-market stock dashboard with real-time simulation engine.
-    </div>
+    <!-- ═══════════ FOREX M ═══════════ -->
+    <div class="project-card fade-in">
+      <!-- Animated preview -->
+      <div class="project-preview">
+        <div class="preview-forex">
+          <div class="pf-top">
+            <span class="pf-label">Forex M · 39 Currencies</span>
+          </div>
+          <div class="pf-pairs" id="forexPreviewPairs"></div>
+          <div class="pf-strength">
+            <div class="pf-str-label">Currency strength</div>
+            <div class="pf-str-bars" id="forexStrBars"></div>
+          </div>
+        </div>
+        <span class="project-card-badge badge-live">Live via ECB</span>
+      </div>
 
-  </div>
-
-  <!-- FOREX M -->
-  <div class="project-card">
-
-    <div class="project-preview"></div>
-
-    <div class="project-header">
-      <div class="project-title">
-        <a href="https://tanreyfritz.github.io/forexmonitor/"
-           target="_blank"
-           title="Open Forex M Live App">
-          Forex M
-        </a>
+      <div class="project-header">
+        <div class="project-icon">💱</div>
+        <div class="project-links">
+          <a href="https://tanreyfritz.github.io/forexmonitor/" class="btn-live" target="_blank">ForexM</a>
+        </div>
+      </div>
+      <div class="project-body">
+        <h3>Forex M</h3>
+        <p class="project-tagline">Live foreign exchange monitor</p>
+        <p>A live foreign exchange dashboard pulling real rates from the Frankfurter API (European Central Bank data) for 39 currencies across all major global regions — with currency strength analysis, candlestick charts, and a live converter.</p>
+        <ul class="feature-list">
+          <li>Live ECB rates via Frankfurter API, graceful fallback to simulated data</li>
+          <li>39 currencies across Americas, Europe, Asia, Africa, Oceania, Middle East</li>
+          <li>Currency strength index ranking 8 majors (USD, EUR, GBP, JPY, CHF, CAD, AUD, NZD)</li>
+          <li>Candlestick OHLC charts per pair via Lightweight Charts library</li>
+          <li>Base currency switcher with 12 quick-select options and custom amount input</li>
+          <li>Pip calculator, bid/ask spread, 24h high/low, inline sparklines</li>
+          <li>Forex session tracker: Sydney, Tokyo, London, New York — overlap detection</li>
+          <li>Region filter, sort by rate/change/pips, favorites with localStorage</li>
+        </ul>
+        <div class="project-stats">
+          <div class="proj-stat"><span class="proj-stat-num">39</span><span class="proj-stat-lbl">Currencies</span></div>
+          <div class="proj-stat"><span class="proj-stat-num">Live</span><span class="proj-stat-lbl">ECB Rates</span></div>
+          <div class="proj-stat"><span class="proj-stat-num">4</span><span class="proj-stat-lbl">Sessions</span></div>
+          <div class="proj-stat"><span class="proj-stat-num">60s</span><span class="proj-stat-lbl">Auto-refresh</span></div>
+        </div>
+        <div class="project-stack" style="margin-top:1.2rem">
+          <span class="stack-tag">Vanilla JS</span>
+          <span class="stack-tag">Frankfurter API</span>
+          <span class="stack-tag">Lightweight Charts</span>
+          <span class="stack-tag">Intl API</span>
+          <span class="stack-tag">localStorage</span>
+          <span class="stack-tag">CSS Grid</span>
+          <span class="stack-tag">DM Mono</span>
+        </div>
       </div>
     </div>
 
-    <div class="project-body">
-      Live forex tracker with ECB-based rates and currency analytics.
-    </div>
+</section>
 
+<section id="contact">
+  <div class="fade-in">
+    <p class="section-label">// 04. Contact</p>
+    <h2 class="section-title">Let's Connect</h2>
+    <div class="section-divider"></div>
   </div>
-
-</div>
-
+  <div class="contact-grid">
+    <div class="contact-info fade-in">
+      <p>Whether you have a project in mind, a job opportunity, or just want to talk tech — my inbox is always open. Let's build something great together.</p>
+      <div class="contact-links">
+        <a href="https://linkedin.com/in/yourprofile" target="_blank" class="contact-link">
+          <div class="contact-link-icon">🔗</div>
+          <div class="contact-link-text"><span>LinkedIn</span><span>linkedin.com/in/yourprofile</span></div>
+        </a>
+        <a href="https://github.com/tanreyfritz" target="_blank" class="contact-link">
+          <div class="contact-link-icon">💻</div>
+          <div class="contact-link-text"><span>GitHub</span><span>github.com/tanreyfritz</span></div>
+        </a>
+        <a href="#" class="contact-link btn-primary" download style="margin-top:0.5rem;border-radius:3px;">↓ &nbsp; Download Resume / CV</a>
+      </div>
+    </div>
+    <form class="contact-form fade-in" onsubmit="handleSubmit(event)">
+      <div class="form-group"><label>Name</label><input type="text" placeholder="Your name" /></div>
+      <div class="form-group"><label>Email</label><input type="email" placeholder="your@email.com" /></div>
+      <div class="form-group"><label>Message</label><textarea placeholder="Tell me about your project or opportunity..."></textarea></div>
+      <button type="submit" class="btn-primary" style="align-self:flex-start;">Send Message →</button>
+    </form>
+  </div>
 </section>
 
-<section>
-  <h2>Contact</h2>
-  <p>
-    LinkedIn:
-    <a href="https://www.linkedin.com/in/rey-fritz-tan-b14a51302" target="_blank">
-      Profile
-    </a>
-  </p>
-</section>
+<footer>
+  <div class="footer-logo">Rey Fritz Eisen L. Tan</div>
+  <div class="footer-copy">© 2026 · All rights reserved</div>
+  <div class="footer-links">
+    <a href="#hero">Top ↑</a>
+    <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
+    <a href="https://github.com/yourusername" target="_blank">GitHub</a>
+  </div>
+</footer>
 
+<script>
+  /* ── SCROLL OBSERVER ── */
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  document.querySelectorAll('.skills-grid, .projects-grid').forEach(grid => {
+    [...grid.children].forEach((child, i) => child.style.transitionDelay = `${i * 0.1}s`);
+  });
+
+  /* ── CONTACT FORM ── */
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button');
+    btn.textContent = 'Message Sent ✓';
+    btn.style.background = '#2e7d52';
+    setTimeout(() => { btn.textContent = 'Send Message →'; btn.style.background = ''; e.target.reset(); }, 3000);
+  }
+
+  /* ── STOCK PREVIEW ── */
+  const STOCK_PREVIEW = [
+    { t:'AAPL', pct: 1.24, up:true },
+    { t:'NVDA', pct: 2.87, up:true },
+    { t:'TSLA', pct:-1.42, up:false },
+    { t:'MSFT', pct: 0.63, up:true },
+    { t:'META', pct:-0.91, up:false },
+  ];
+  function renderStockPreview() {
+    const rowsEl = document.getElementById('stockPreviewRows');
+    if (!rowsEl) return;
+    rowsEl.innerHTML = STOCK_PREVIEW.map(s => {
+      const w = Math.min(90, Math.abs(s.pct) * 28 + 20);
+      const color = s.up ? '#22d997' : '#ff4d6a';
+      return `<div class="ps-row">
+        <span class="ps-ticker">${s.t}</span>
+        <div class="ps-bar-bg"><div class="ps-bar-fill" style="width:${w}%;background:${color};animation-delay:${Math.random()*1.5}s"></div></div>
+        <span class="ps-pct" style="color:${color}">${s.up?'+':''}${s.pct}%</span>
+      </div>`;
+    }).join('');
+
+    // Mini sparkline across bottom of Stock M preview
+    const sparkEl = document.getElementById('stockSparklinePreview');
+    if (sparkEl) {
+      const pts = [40,42,39,44,43,46,45,48,47,51,49,52,50,54,53];
+      const W = 280, H = 24;
+      const mn = Math.min(...pts), mx = Math.max(...pts), rng = mx-mn||1;
+      const xs = pts.map((_,i) => (i/(pts.length-1))*W);
+      const ys = pts.map(p => H - ((p-mn)/rng)*(H-4)-2);
+      const d = xs.map((x,i)=>`${i===0?'M':'L'}${x.toFixed(1)},${ys[i].toFixed(1)}`).join(' ');
+      sparkEl.innerHTML = `<svg width="100%" viewBox="0 0 ${W} ${H}" fill="none" preserveAspectRatio="none">
+        <path d="${d}" stroke="#7b6fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>`;
+    }
+  }
+
+  /* ── FOREX PREVIEW ── */
+  const FOREX_PREVIEW = [
+    { pair:'USD/PHP', rate:'57.44', pct:'+0.31', up:true },
+    { pair:'USD/EUR', rate:'0.9224', pct:'-0.18', up:false },
+    { pair:'USD/JPY', rate:'155.23', pct:'+0.52', up:true },
+    { pair:'USD/GBP', rate:'0.7902', pct:'-0.09', up:false },
+  ];
+  const STRENGTH = [
+    { code:'USD', h:85, c:'#22d997' },
+    { code:'EUR', h:60, c:'#22d997' },
+    { code:'GBP', h:48, c:'#ff4d6a' },
+    { code:'JPY', h:35, c:'#ff4d6a' },
+    { code:'CHF', h:72, c:'#22d997' },
+    { code:'CAD', h:55, c:'#22d997' },
+    { code:'AUD', h:40, c:'#ff4d6a' },
+    { code:'NZD', h:30, c:'#ff4d6a' },
+  ];
+  function renderForexPreview() {
+    const pairsEl = document.getElementById('forexPreviewPairs');
+    if (pairsEl) {
+      pairsEl.innerHTML = FOREX_PREVIEW.map(p => `<div class="pf-pair">
+        <span class="pf-code">${p.pair}</span>
+        <span class="pf-rate">${p.rate}</span>
+        <span class="pf-chg ${p.up?'up':'dn'}">${p.pct}%</span>
+      </div>`).join('');
+    }
+    const barsEl = document.getElementById('forexStrBars');
+    if (barsEl) {
+      barsEl.innerHTML = STRENGTH.map(s => `<div class="pf-str-bar" style="height:${s.h}%;background:${s.c};opacity:0.7" title="${s.code}"></div>`).join('');
+    }
+  }
+  /* ── INIT ── */
+  renderStockPreview();
+  renderForexPreview();
+  renderMedPreview();
+</script>
 </body>
 </html>
