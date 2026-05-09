@@ -354,7 +354,7 @@
       <div class="project-header">
         <div class="project-icon">📈</div>
         <div class="project-links">
-          <a href="https://tanreyfritz.github.io/stockmarketmonitor/" class="btn-live" target="_blank">StockM</a>
+          <a href="https://tanreyfritz.github.io/stockmarketmonitor/" class="btn-live" target="_blank">Click Here ↗</a>
         </div>
       </div>
       <div class="project-body">
@@ -409,7 +409,7 @@
       <div class="project-header">
         <div class="project-icon">💱</div>
         <div class="project-links">
-          <a href="https://tanreyfritz.github.io/forexmonitor/" class="btn-live" target="_blank">ForexM</a>
+          <a href="https://tanreyfritz.github.io/forexmonitor/" class="btn-live" target="_blank">Click Here ↗</a>
         </div>
       </div>
       <div class="project-body">
@@ -444,6 +444,43 @@
       </div>
     </div>
 
+    <!-- ═══════════ MEDICINE DIRECTORY ═══════════ -->
+    <div class="project-card project-card-simple fade-in">
+      <div class="project-preview" style="background:linear-gradient(135deg,#0d1b2e 0%,#1a2d4a 100%)">
+        <div style="display:flex;flex-direction:column;gap:6px;padding:16px;width:100%">
+          <div style="font-family:'DM Mono',monospace;font-size:9px;color:#c8a96e;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px">Medicine Directory</div>
+          <div id="medPreviewRows"></div>
+        </div>
+        <span class="project-card-badge" style="background:rgba(200,169,110,0.15);color:#c8a96e;border:1px solid rgba(200,169,110,0.25)">Reference App</span>
+      </div>
+      <div class="project-header">
+        <div class="project-icon">💊</div>
+        <div class="project-links">
+          <a href="#">GitHub ↗</a>
+          <a href="#">Live ↗</a>
+        </div>
+      </div>
+      <div class="project-body">
+        <h3>Medicine Directory</h3>
+        <p class="project-tagline">Drug reference &amp; pricing tool</p>
+        <p>A searchable medicine reference app covering drug names, brands, dosages, indications, usage instructions, and multi-currency pricing — designed to deliver clear, reliable medication information fast.</p>
+        <ul class="feature-list">
+          <li>Full-text search across drug names, brands, and indications</li>
+          <li>Multi-currency price display with live conversion</li>
+          <li>Dosage, usage instructions, and contraindication data</li>
+          <li>REST API backend with SQLite storage</li>
+        </ul>
+        <div class="project-stack" style="margin-top:1rem">
+          <span class="stack-tag">Java</span>
+          <span class="stack-tag">React</span>
+          <span class="stack-tag">SQLite</span>
+          <span class="stack-tag">REST API</span>
+          <span class="stack-tag">CSS</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </section>
 
 <section id="contact">
@@ -572,6 +609,24 @@
       barsEl.innerHTML = STRENGTH.map(s => `<div class="pf-str-bar" style="height:${s.h}%;background:${s.c};opacity:0.7" title="${s.code}"></div>`).join('');
     }
   }
+
+  /* ── MEDICINE PREVIEW ── */
+  const MEDS = [
+    { name:'Amoxicillin 500mg', brand:'Amoxil', cat:'Antibiotic' },
+    { name:'Ibuprofen 200mg', brand:'Advil', cat:'Analgesic' },
+    { name:'Metformin 500mg', brand:'Glucophage', cat:'Antidiabetic' },
+    { name:'Atorvastatin 40mg', brand:'Lipitor', cat:'Statin' },
+  ];
+  function renderMedPreview() {
+    const el = document.getElementById('medPreviewRows');
+    if (!el) return;
+    el.innerHTML = MEDS.map(m => `<div style="display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid rgba(200,169,110,0.06)">
+      <span style="font-family:'DM Mono',monospace;font-size:9px;color:#c8a96e;width:120px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${m.name}</span>
+      <span style="font-family:'DM Mono',monospace;font-size:9px;color:#4a6070;flex:1">${m.brand}</span>
+      <span style="font-size:8px;padding:1px 5px;border-radius:2px;background:rgba(200,169,110,0.1);color:#c8a96e">${m.cat}</span>
+    </div>`).join('');
+  }
+
   /* ── INIT ── */
   renderStockPreview();
   renderForexPreview();
