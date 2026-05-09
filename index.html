@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Rey Fritz Eisen L. Tan | Full Stack & AI/ML Engineer</title>
+<title>Rey Fritz Eisen L. Tan | Portfolio</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 
@@ -11,168 +11,139 @@
 :root {
   --navy:#0d1b2e;
   --navy-mid:#152540;
-  --navy-light:#1e3558;
-  --steel:#2e4a6e;
   --accent:#c8a96e;
-  --accent-light:#e2c98a;
   --silver:#8fa3bc;
-  --light:#d6e4f0;
   --white:#f4f8fc;
-  --gray:#4a6070;
-  --green:#2dce89;
-  --red:#f75777;
-  --purple:#7c6fff;
 }
 
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--white);overflow-x:hidden}
+body {
+  margin:0;
+  font-family:'DM Sans',sans-serif;
+  background:var(--navy);
+  color:var(--white);
+}
 
-section{padding:6rem 6%}
-.fade-in{opacity:0;transform:translateY(28px);transition:.7s}
-.fade-in.visible{opacity:1;transform:none}
+nav {
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:1rem 6%;
+  background:rgba(13,27,46,0.92);
+  display:flex;
+  justify-content:space-between;
+}
 
-/* NAV */
-nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:space-between;padding:1.2rem 6%;background:rgba(13,27,46,.92);backdrop-filter:blur(14px)}
-.nav-links{display:flex;gap:2rem;list-style:none}
-.nav-links a{color:var(--silver);text-decoration:none}
+.nav-logo { color:var(--accent); font-weight:700; }
 
-/* HERO */
-#hero{min-height:100vh;display:flex;align-items:center;padding:0 6%}
-.hero-name{font-size:4rem;font-family:'Playfair Display'}
-.hero-name span{color:var(--accent)}
+section { padding:6rem 6%; }
 
-/* PROJECTS */
-.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.8rem}
+.projects-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
+  gap:1.5rem;
+}
 
-.project-card{background:var(--navy);border:1px solid rgba(200,169,110,.1);border-radius:8px;overflow:hidden;transition:.3s}
-.project-card:hover{transform:translateY(-6px)}
+.project-card {
+  background:var(--navy-mid);
+  border:1px solid rgba(200,169,110,0.1);
+  border-radius:8px;
+  overflow:hidden;
+}
 
-.project-preview{height:160px;background:#0a0f1a;display:flex;align-items:center;justify-content:center;position:relative}
+.project-preview { height:140px; background:#0b0f1a; }
 
-.project-card-badge{position:absolute;top:10px;right:10px;font-size:10px;padding:3px 8px;border-radius:3px}
+.project-header {
+  padding:1rem;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
 
-/* STOCK */
-.ps-row{display:flex;gap:8px;align-items:center}
-.ps-bar-bg{flex:1;height:4px;background:rgba(255,255,255,.06)}
-.ps-bar-fill{height:100%}
+/* PROJECT NAME = ONLY LINK */
+.project-title a {
+  color:var(--accent);
+  text-decoration:none;
+  font-size:1.1rem;
+  font-weight:600;
+}
 
-/* FOREX */
-.pf-pair{display:flex;gap:10px;font-size:10px}
+/* hover tooltip via title attribute handled in HTML */
 
-/* STACK */
-.stack-tag{font-size:.7rem;background:rgba(200,169,110,.1);padding:.2rem .6rem}
-
-/* BUTTON */
-.btn-live{color:var(--accent);font-size:11px;text-decoration:none}
-
+.project-body {
+  padding:1rem;
+  color:var(--silver);
+  font-size:0.9rem;
+}
 </style>
 </head>
 
 <body>
 
 <nav>
-  <div>RFELT</div>
-  <ul class="nav-links">
-    <li><a href="#projects">Projects</a></li>
-  </ul>
+  <div class="nav-logo">RFELT</div>
 </nav>
 
-<section id="hero">
-  <div>
-    <h1 class="hero-name">Rey Fritz<br><span>Eisen L. Tan</span></h1>
-    <p>Full Stack + AI/ML Engineer</p>
-  </div>
-</section>
+<section>
 
-<section id="projects">
-  <div class="fade-in">
-    <h2>Projects</h2>
-  </div>
+<h2>Projects</h2>
 
-  <div class="projects-grid">
+<div class="projects-grid">
 
-    <!-- STOCK M -->
-    <div class="project-card fade-in">
+  <!-- STOCK M -->
+  <div class="project-card">
 
-      <div class="project-preview">
-        <div>
-          <div id="stockPreviewRows"></div>
-        </div>
-      </div>
+    <div class="project-preview"></div>
 
-      <div style="padding:1rem">
-        <h3>Stock M</h3>
-        <a class="btn-live" href="https://github.com/tanreyfritz/stockmarketmonitor" target="_blank">GitHub ↗</a>
+    <div class="project-header">
+      <div class="project-title">
+        <a href="https://tanreyfritz.github.io/stockmarketmonitor/"
+           target="_blank"
+           title="Open Stock M Live App">
+          Stock M
+        </a>
       </div>
     </div>
 
-    <!-- FOREX -->
-    <div class="project-card fade-in">
-
-      <div class="project-preview">
-        <div id="forexPreviewPairs"></div>
-      </div>
-
-      <div style="padding:1rem">
-        <h3>Forex M</h3>
-        <a class="btn-live" href="https://github.com/tanreyfritz/forexmonitor" target="_blank">GitHub ↗</a>
-      </div>
+    <div class="project-body">
+      Multi-market stock dashboard with real-time simulation engine.
     </div>
 
   </div>
+
+  <!-- FOREX M -->
+  <div class="project-card">
+
+    <div class="project-preview"></div>
+
+    <div class="project-header">
+      <div class="project-title">
+        <a href="https://tanreyfritz.github.io/forexmonitor/"
+           target="_blank"
+           title="Open Forex M Live App">
+          Forex M
+        </a>
+      </div>
+    </div>
+
+    <div class="project-body">
+      Live forex tracker with ECB-based rates and currency analytics.
+    </div>
+
+  </div>
+
+</div>
+
 </section>
 
-<script>
-
-/* FIXED OBSERVER */
-const observer = new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.classList.add('visible');
-    }
-  });
-},{threshold:0.1});
-
-document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
-
-/* STOCK */
-const STOCK=[
- {t:'AAPL',p:1.2,u:1},
- {t:'NVDA',p:2.5,u:1},
- {t:'TSLA',p:-1.1,u:0}
-];
-
-function renderStock(){
-const el=document.getElementById('stockPreviewRows');
-el.innerHTML=STOCK.map(s=>{
-const w=Math.abs(s.p)*30+20;
-return `<div class="ps-row">
-<span>${s.t}</span>
-<div class="ps-bar-bg"><div class="ps-bar-fill" style="width:${w}%;background:${s.u?'#2dce89':'#f75777'}"></div></div>
-<span>${s.p}%</span>
-</div>`;
-}).join('');
-}
-
-/* FOREX */
-const FOREX=[
- {p:'USD/EUR',r:'0.92'},
- {p:'USD/JPY',r:'155'},
- {p:'USD/PHP',r:'57'}
-];
-
-function renderForex(){
-const el=document.getElementById('forexPreviewPairs');
-el.innerHTML=FOREX.map(f=>`<div class="pf-pair">
-<span>${f.p}</span><span>${f.r}</span>
-</div>`).join('');
-}
-
-renderStock();
-renderForex();
-
-</script>
+<section>
+  <h2>Contact</h2>
+  <p>
+    LinkedIn:
+    <a href="https://www.linkedin.com/in/rey-fritz-tan-b14a51302" target="_blank">
+      Profile
+    </a>
+  </p>
+</section>
 
 </body>
 </html>
